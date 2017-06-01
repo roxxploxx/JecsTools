@@ -108,6 +108,13 @@ namespace AbilityUser
                         power.PawnAbilityTick(); }
                 }
                 this.TicksToCastPercentage = (1 - (this.TicksToCast / this.TicksToCastMax));
+
+                // need to give verb ticks
+                //Log.Message("db send tick to each verb of CompAbilityUser");
+                foreach ( Verb v in this.AbilityVerbs ) {
+                    if ( v.state != VerbState.Idle) Log.Message("  - send non-idle tick to "+v.GetType());
+                    v.VerbTick();
+                }
             }
         }
 
